@@ -1,3 +1,7 @@
+# Aim: Utilize GPT to Create a Word-Semantic Matrix as an Alternative to Labor-Intensive Experimental Methods
+
+For a traditional experimental approach, you can refer to [this](https://link.springer.com/article/10.3758/BF03192726) paper.
+
 # Steps
 
 ## **Step 1: Generate Semantic Features for Words**

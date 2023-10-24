@@ -187,7 +187,7 @@ sns.heatmap(sim_mx, cmap='coolwarm', annot=False)
 import gensim.downloader as api
 model = api.load("word2vec-google-news-300")
 binary_matrix['word'] = binary_matrix['word'].replace('grey', 'gray')
-words = binary_matrix['Word']
+words = binary_matrix['word']
 num_words = len(words)
 sim_w2v = np.zeros((num_words, num_words))
 for i in range(num_words):

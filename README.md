@@ -74,9 +74,11 @@ Used for cooking food*
 
 - Check semantically related words.
 
-Words similar to 'pant':
-['coat', 'cowl', 'flag', 'toga', 'feat', 'slip', 'vest', 'gown', 'tops', 'sash', 'hood', 'wrap', 'cuff']
+<aside>
+💡 *Words similar to 'pant':
+['coat', 'cowl', 'flag', 'toga', 'feat', 'slip', 'vest', 'gown', 'tops', 'sash', 'hood', 'wrap', 'cuff']*
 
+</aside>
 
 - Calculate pairwise similarity between all words based on the binary representation.
 - Calculate pairwise similarity between all words using word2vec representation.

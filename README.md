@@ -83,3 +83,6 @@ Used for cooking food*
 - Calculate pairwise similarity between all words based on the binary representation.
 - Calculate pairwise similarity between all words using word2vec representation.
 - Evaluate the correlation between the two pairwise similarity vectors for significant correlations.
+
+  ![comparison](https://github.com/linwangmeyer/GPT_sem/assets/45405796/e59ae33c-84c0-41aa-81a3-8f2d12f44acb)
+

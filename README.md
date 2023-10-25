@@ -72,6 +72,14 @@ Used for cooking food*
 
 ## **Step 4: Validate the Binary Feature Representation**
 
+- Check semantically related words.
+
+<aside>
+💡 *Words similar to 'pant':
+['coat', 'cowl', 'flag', 'toga', 'feat', 'slip', 'vest', 'gown', 'tops', 'sash', 'hood', 'wrap', 'cuff']*
+
+</aside>
+
 - Calculate pairwise similarity between all words based on the binary representation.
 - Calculate pairwise similarity between all words using word2vec representation.
 - Evaluate the correlation between the two pairwise similarity vectors for significant correlations.

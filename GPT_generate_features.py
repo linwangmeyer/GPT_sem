@@ -177,6 +177,23 @@ matrix.reset_index(inplace=True)
 matrix.rename(columns={'index':'word'}, inplace=True)
 matrix.to_csv('binary_' + str(n_clusters) + '.csv', index=False)
 
+
+
+# ------check similar pairs------
+def find_similar_words(target_word,threshold):    
+    if np.where(binary_matrix['word'] == target_word)[0].size > 0:
+        word_index = np.where(binary_matrix['word'] == target_word)[0][0]
+        similarities = sim_mx[word_index]
+        similar_words = binary_matrix['word'][(similarities > threshold) & (binary_matrix['word'] != target_word)]
+        print(f"Words similar to '{target_word}':")
+        print(f"{similar_words.to_list()}")
+    else:
+        print(f"There is no '{target_word}' in the data!")
+target_word = 'pant'
+threshold = 0.2
+find_similar_words(target_word,threshold)
+
+
 #---------- check results: compare to word2vec representations ---------
 binary_matrix = pd.read_csv('binary_' + str(n_clusters) + '.csv')
 vec = binary_matrix.iloc[:,1:]
@@ -200,23 +217,15 @@ indices = np.triu_indices(sim_mx.shape[0],k=1)
 kmn = sim_mx[indices]
 w2v = sim_w2v[indices]
 corr, p_value = pearsonr(kmn,w2v)
-print("correlation coefficient:", corr)
-print("P-value:", p_value)
-#correlation coefficient: 0.11586067861947648
-#P-value: 0.0
+print(f"#correlation coefficient: {corr:.2f}")
+print(f"#P-value: {p_value:.2f}")
+#correlation coefficient: 0.12
+#P-value: 0.00
 
-plt.scatter(sim_mx, sim_w2v)
+plt.scatter(sim_mx, sim_w2v, alpha=0.5, s=10)
 plt.xlabel('binary')
 plt.ylabel('w2v')
 plt.title('relationship')
-plt.show()
 plt.savefig('plot_pairwise.png')
-
-# ------check similar pairs------
-row_indices, col_indices = np.where(np.triu(sim_mx, k=1) > 0.7)
-index_pairs = list(zip(row_indices, col_indices))
-for a,b in index_pairs[12:20]:
-    print(binary_matrix.iloc[a]['Word'])
-    print(binary_matrix.iloc[b]['Word'])
-
+plt.show()
 

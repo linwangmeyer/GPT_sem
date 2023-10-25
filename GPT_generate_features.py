@@ -202,8 +202,17 @@ w2v = sim_w2v[indices]
 corr, p_value = pearsonr(kmn,w2v)
 print("correlation coefficient:", corr)
 print("P-value:", p_value)
+#correlation coefficient: 0.11586067861947648
+#P-value: 0.0
 
-# check similar pairs
+plt.scatter(sim_mx, sim_w2v)
+plt.xlabel('binary')
+plt.ylabel('w2v')
+plt.title('relationship')
+plt.show()
+plt.savefig('plot_pairwise.png')
+
+# ------check similar pairs------
 row_indices, col_indices = np.where(np.triu(sim_mx, k=1) > 0.7)
 index_pairs = list(zip(row_indices, col_indices))
 for a,b in index_pairs[12:20]:

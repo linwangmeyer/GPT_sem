@@ -1,0 +1,27 @@
+import numpy as np
+import pandas as pd
+import openai
+from keybert.llm import OpenAI
+from keybert import KeyLLM
+
+key_fname = r'/Users/linwang/Dropbox (Partners HealthCare)/OngoingProjects/MASC-MEG/lab_api_key.txt'
+with open(key_fname,'r') as file:
+    key = file.read()
+openai.api_key = key
+
+llm = OpenAI()
+kw_model = KeyLLM(llm)
+
+# get data
+n_clusters = 1000
+df = pd.read_csv('Kmeans_' + str(n_clusters) + '.csv')
+
+# get documents: the concatenated features
+MY_DOCUMENTS = df['newMeaning'].unique()
+keywords = kw_model.extract_keywords(MY_DOCUMENTS)
+df2 = pd.dataframe({'newMeaning':MY_DOCUMENTS,
+                    'keybert': keywords})
+df2['keybert'] = df2['keybert'].applymap(lambda x: '_'.join(x))
+
+merged_df = df.merge(df2, on='newMeaning')
+merged_df.to_csv('Kmeans_keyLLM_' + str(n_clusters) + '.csv')
